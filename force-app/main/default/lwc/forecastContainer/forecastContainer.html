@@ -1,0 +1,34 @@
+<template>
+    <div class="slds-grid slds-gutters slds-wrap">
+        <div class="slds-col slds-size_1-of-1">
+            <div class="header__background d-flex">
+                <div class="slds-p-around_medium header-button__border">
+                    <lightning-icon icon-name="utility:back" alternative-text="Back" size="small">
+                    </lightning-icon>
+                </div>
+                <div class="slds-p-around_medium slds-grid slds-grid--vertical-align-center">
+                    <span class="exp-logo">
+                        <img src={logoUrl} class="slds-m-right--small"/>
+                    </span>
+                    <span class="header__title">
+                        Forecasting:&nbsp;
+                    </span>
+                    <span class="header__subtitle">
+                        Opportunity Name
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-1">
+            <div class="slds-p-around_x-large">
+                <div class="header__subheading">
+                    Forecast Name
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-1 table-container">
+            <!-- table component here -->
+            <c-forecast-table></c-forecast-table>
+        </div>
+    </div>
+</template>

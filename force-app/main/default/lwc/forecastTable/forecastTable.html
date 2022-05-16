@@ -1,0 +1,173 @@
+<template>
+    <div class="slds-p-around_medium slds-text-align_right button-menu grey-bg">
+        <lightning-button-menu label="VIEW" alternative-text="Show menu" menu-alignment="auto" onselect={handleMenuItemSelection}>
+            <lightning-menu-item value="fullAttributes" label="Show full attributes" checked=false></lightning-menu-item>
+            <lightning-menu-item value="monthlySummary" label="Show monthly summary" checked={monthlyView}></lightning-menu-item>
+        </lightning-button-menu>
+    </div>
+    <div class="forecast-table">
+        <table>
+            <thead>
+                <tr>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Product">Product</div>
+                      </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Option">Option</div>
+                      </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Attribute">Attribute</div>
+                      </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Revenue Type">Revenue Type</div>
+                      </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="QTY">QTY</div>
+                      </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Unit Price">Unit Price</div>
+                      </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Start Month">Start Month</div>
+                      </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Months">Months</div>
+                      </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Revenue Recognition">Revenue Recognition</div>
+                      </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Commited">Commited</div>
+                      </th>
+                      <template if:false={monthlyView}>
+                          <template for:each={summaryYears.responseData.yearsData} for:item="yearData">
+                            <th key={yearData.year} class="" scope="col">
+                                <div class="slds-truncate slds-text-align_right" title={yearData.year}>{yearData.year}</div>
+                              </th>
+                          </template>
+                      </template>
+                      <template if:true={monthlyView}>
+                          <template for:each={columnHeadersForMonthlyView} for:item="monthData">
+                            <th key={monthData} class="" scope="col">
+                                <div class="slds-truncate slds-text-align_right" title={monthData}>{monthData}</div>
+                              </th>
+                          </template>
+                      </template>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={dataToShow} for:item="product" for:index="idx">
+                    <tr key={product.productFLIId} class="slds-hint-parent">
+                        <td data-label="Product" scope="row">
+                            <div class="slds-truncate" title={product.productItemName}>
+                                {product.productItemName}
+                            </div>
+                        </td>
+                        <td data-label="Option" scope="row">
+                            <div class="slds-truncate" title={product.optionItemName}>
+                              <span if:true={product.optionItemName}>
+                                {product.optionItemName}
+                              </span>
+                              <span if:false={product.optionItemName}>
+                                N/A
+                              </span>
+                            </div>
+                          </td>
+                        <td data-label="Attribute" scope="row">
+                            <div class="slds-truncate" title={product.attributes}>
+                              <span if:true={product.attributes}>
+                                {product.attributes}
+                              </span>
+                              <span if:false={product.attributes}>
+                                N/A
+                              </span>
+                            </div>
+                          </td>
+                        <td data-label="Revenue Type" scope="row">
+                            <div class="slds-truncate" title={product.revenueType}>
+                                {product.revenueType}
+                            </div>
+                          </td>
+                        <td data-label="QTY" scope="row">
+                            <div class="slds-truncate" title={product.qty}>
+                                {product.qty}
+                            </div>
+                          </td>
+                        <td data-label="Unit Price" scope="row">
+                            <div class="slds-truncate" title={product.displayUnitPrice}>
+                                {product.displayUnitPrice}
+                            </div>
+                          </td>
+                        <td data-label="Start Month" scope="row">
+                            <div class="slds-truncate" title={product.startMonth}>
+                                {product.startMonth}
+                            </div>
+                        </td>
+                        <td data-label="Months" scope="row">
+                            <div class="slds-truncate" title={product.months}>
+                                {product.months}
+                            </div>
+                        </td>
+                        <td data-label="Revenue Recognition" scope="row">
+                            <div class="slds-truncate" title={product.revenueRecognitionName}>
+                              <span if:true={product.revenueRecognitionName}>
+                                {product.revenueRecognitionName}
+                              </span>
+                              <span if:false={product.revenueRecognitionName}>
+                                N/A
+                              </span>
+                            </div>
+                          </td>
+                        <td data-label="Commited" scope="row">
+                            <div class="slds-truncate" title={product.committed}>
+                                {product.committed}
+                            </div>
+                          </td>
+                          <template if:false={monthlyView}>
+                            <template for:each={product.yearData} for:item="yearData">
+                              <td key={yearData} data-label={yearData} scope="row">
+                                  <div class="slds-truncate slds-text-align_right" title={yearData}>{yearData}</div>
+                                </td>
+                            </template>
+                        </template>
+                        <template if:true={monthlyView}>
+                          <template for:each={product.monthData} for:item="monthData">
+                            <td key={monthData} data-label={monthData} scope="row">
+                                <div class="slds-truncate slds-text-align_right" title={monthData}>{monthData}</div>
+                              </td>
+                          </template>
+                        </template>
+                    </tr>
+                </template>
+                <tr class="grey-bg">
+                  <td scope="row" colspan="1">
+                    <div class="slds-truncate" title=""></div>
+                  </td> 
+                  <td scope="row" colspan="9">
+                    <div class="slds-truncate" title=""></div>
+                  </td> 
+                    <template if:false={monthlyView}>
+                        <template iterator:yeardata={summaryYears.responseData.yearsData}>
+                          <!-- <td key={yeardata.value.year} class="cell-border__left" data-label={yeardata.value.year} scope="row" colspan="11" if:true={yeardata.first}>
+                              <div class="slds-truncate slds-text-align_right f-weight_400" title={yeardata.value.summaryAmount}>{yeardata.value.summaryAmount}</div>
+                            </td> -->
+                          <td key={yeardata.value.year} data-label={yeardata.value.year} scope="row">
+                              <div class="slds-truncate slds-text-align_right f-weight_400" title={yeardata.value.summaryAmount}>{yeardata.value.summaryAmount}</div>
+                            </td>
+                        </template>
+                    </template>
+                    <template if:true={monthlyView}>
+                        <template iterator:monthlydata={summaryMonths.responseData.summaryAmount}>
+                          <!-- <td key={monthlydata.value} data-label={monthlydata.value} scope="row" colspan="11" if:true={monthlydata.first}>
+                              <div class="slds-truncate slds-text-align_right f-weight_400" title={monthlydata.value}>{monthlydata.value}</div>
+                            </td> -->
+                          <td key={monthlydata.value} data-label={monthlydata.value} scope="row">
+                              <div class="slds-truncate slds-text-align_right f-weight_400" title={monthlydata.value}>{monthlydata.value}</div>
+                            </td>
+                        </template>
+                    </template>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>

@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Montserrat', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+}
+@font-face {
+    font-family: 'Roboto', sans-serif;
+    src: url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+}
+
+.base-font {
+    font-family: Monsterrat;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+.header__background {
+    background: #000;
+}
+
+.header-button__border {
+    border-right: 1px solid #414141;
+}
+
+.header__title {
+    font-family: Montserrat;
+    font-size: 13px;
+    color: #acacac;
+    text-decoration: none solid rgb(172, 172, 172);
+}
+
+.header__subtitle {
+    font-family: Montserrat;
+    font-size: 16px;
+    color: #ffffff;
+    text-decoration: none solid rgb(255, 255, 255);
+    margin-left: var(--lwc-varSpacingHorizontalXxSmall);
+}
+
+.header__subheading {
+    font-family: Montserrat;
+    font-size: 19px;
+    color: #0a0a0a;
+    text-decoration: none solid rgb(10, 10, 10);
+}
+
+/* .txt-roboto{
+    font-family: Roboto;
+} */

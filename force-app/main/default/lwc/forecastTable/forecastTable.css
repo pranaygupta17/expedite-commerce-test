@@ -1,0 +1,16 @@
+.grey-bg {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-color: #ededed;
+    background-color: #f8f8f8;
+    background-size: cover;
+}
+
+.f-weight_400 {
+    font-weight: 400;
+}
+
+.cell-border__left {
+    border-left: 1px solid #ededed;
+}
