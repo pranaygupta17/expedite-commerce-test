@@ -26,6 +26,11 @@ export default class ForecastTable extends LightningElement {
                     }
                 });
             });
+            if(itemData.yearData.length !== this.summaryYears.responseData.yearsData.length) {
+                for(let i = itemData.yearData.length; i < this.summaryYears.responseData.yearsData.length; i++) {
+                    itemData.yearData.push('-');
+                }
+            }
             
             itemData.monthData = [];
             this.summaryMonths.responseData.linesData.forEach(lineItem => {
