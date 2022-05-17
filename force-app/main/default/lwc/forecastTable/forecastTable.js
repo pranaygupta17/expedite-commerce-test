@@ -9,9 +9,6 @@ export default class ForecastTable extends LightningElement {
     columnHeadersForMonthlyView = [];
     monthlyView = false;
     connectedCallback() {
-        // console.log('sumaryYears', summaryYears);
-        // console.log('lineItemData', lineItemData);
-        
         // generating yearsData obj to show data in table for years
         this.dataToShow = JSON.parse(JSON.stringify(lineItemData));
         this.dataToShow.forEach(itemData => {
